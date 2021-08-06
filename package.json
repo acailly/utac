@@ -1,0 +1,24 @@
+{
+  "name": "utac",
+  "version": "0.0.1",
+  "description": "A minimalist take on web app development",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acailly/utac.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acailly/utac/issues"
+  },
+  "homepage": "https://github.com/acailly/utac#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
+  }
+}
