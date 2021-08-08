@@ -1,3 +1,4 @@
 module.exports = {
-  "/toto": require("./toto.js"),
+  "/": require("./pageAccueil.js"),
+  "/login": require("./pageLogin.js"),
 };
