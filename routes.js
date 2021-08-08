@@ -1,4 +1,4 @@
 module.exports = {
-  "/": require("./pageAccueil.js"),
-  "/login": require("./pageLogin.js"),
+  "/": require("./app/home/home.js"),
+  "/login": require("./app/login/login.js"),
 };

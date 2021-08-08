@@ -1,6 +1,6 @@
 const routes = require("./routes");
 
-module.exports = function (req, res) {
+module.exports = async function (req, res) {
   console.log("New request!");
 
   const requestPath = req.path;
@@ -12,7 +12,7 @@ module.exports = function (req, res) {
 
   const routeHandler = routes[requestPath];
   if (routeHandler) {
-    const routeResponse = routeHandler({ params });
+    const routeResponse = await routeHandler({ params });
     const headers = {};
     routeResponse.headers.forEach(function (val, key) {
       // TODO Est ce que ca gère bien les headers à valeur multiple ?
@@ -20,10 +20,9 @@ module.exports = function (req, res) {
     });
     res.writeHead(routeResponse.status, routeResponse.statusText, headers);
     // TODO est ce que text() gère bien les cas où le body est un form data ou du json ?
-    routeResponse.text().then(function (text) {
-      res.write(text);
-      res.end();
-    });
+    const routeResponseText = await routeResponse.text();
+    res.write(routeResponseText);
+    res.end();
   } else {
     res.status(404).send("Error: Route not found!");
   }
