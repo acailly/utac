@@ -1,6 +1,9 @@
 const fs = require("fs");
 const ejs = require("ejs");
 
+// Doit être à la racine du projet
+const root = __dirname;
+
 async function render(templatePath, data) {
   const globalData = {
     // TODO baseUrl ?
@@ -26,6 +29,7 @@ async function compileTemplate(
   const compiledTemplate = ejs.compile(template, {
     client: true,
     async: true,
+    root,
   });
   const html = await compiledTemplate(
     templateData,
