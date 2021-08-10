@@ -1,9 +1,12 @@
+const path = require("path");
 const express = require("express");
 const requestHandler = require("./requestHandler");
 
 const port = 5678;
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, "app", "public")));
 
 app.all("*", requestHandler);
 
