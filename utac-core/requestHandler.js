@@ -1,4 +1,4 @@
-const routes = require("./routes");
+const routes = require("../app/routes");
 
 module.exports = async function (req, res) {
   console.log("New request!");

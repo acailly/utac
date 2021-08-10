@@ -1,6 +1,6 @@
 const path = require("path");
 const express = require("express");
-const requestHandler = require("./requestHandler");
+const requestHandler = require("./utac-core/requestHandler");
 
 const port = 5678;
 

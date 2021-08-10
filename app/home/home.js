@@ -1,6 +1,6 @@
-const Response = require("../../Response");
-const Headers = require("../../Headers");
-const renderWithEjs = require("../../renderWithEjs");
+const Response = require("../../utac-core/Response");
+const Headers = require("../../utac-core/Headers");
+const renderWithEjs = require("../../utac-core/renderWithEjs");
 
 module.exports = async ({}) => {
   const content = await renderWithEjs("app/home/home.html", {
