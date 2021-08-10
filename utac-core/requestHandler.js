@@ -1,27 +1,22 @@
+const nodeRequestToFetchRequest = require("./nodeRequestToFetchRequest");
+const fetchResponseToNodeResponse = require("./fetchResponseToNodeResponse");
+const fetchRequestParams = require("./fetchRequestParams");
 const routes = require("../app/routes");
 
 module.exports = async function (req, res) {
   console.log("New request!");
 
-  const requestPath = req.path;
-  console.log("Path is", requestPath);
+  const fetchRequest = await nodeRequestToFetchRequest(req);
+  const params = await fetchRequestParams(fetchRequest);
 
-  // TODO si c'est un GET, récupérer les queryparams
-  // TODO si c'est un POST, récupérer les form-data
-  const params = {};
+  const requestPath = new URL(fetchRequest.url).pathname;
+
+  console.log(`${fetchRequest.method} ${fetchRequest.url}`);
 
   const routeHandler = routes[requestPath];
   if (routeHandler) {
-    const routeResponse = await routeHandler({ params });
-    const headers = {};
-    routeResponse.headers.forEach(function (val, key) {
-      // TODO Est ce que ca gère bien les headers à valeur multiple ?
-      headers[key] = val;
-    });
-    res.writeHead(routeResponse.status, routeResponse.statusText, headers);
-    // TODO est ce que text() gère bien les cas où le body est un form data ou du json ?
-    const routeResponseText = await routeResponse.text();
-    res.write(routeResponseText);
+    const routeResponse = await routeHandler({ request: fetchRequest, params });
+    await fetchResponseToNodeResponse(routeResponse, res);
     res.end();
   } else {
     res.status(404).send("Error: Route not found!");

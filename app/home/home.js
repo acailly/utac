@@ -1,5 +1,4 @@
-const Response = require("../../utac-core/Response");
-const Headers = require("../../utac-core/Headers");
+const { Response, Headers } = require("../../utac-core/WebApi");
 const renderWithEjs = require("../../utac-core/renderWithEjs");
 
 module.exports = async ({}) => {

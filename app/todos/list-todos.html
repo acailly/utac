@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- await include('app/common/head.html'); %>
+  </head>
+  <body>
+    <header>
+      <h1>Login</h1>
+      <%- await include('app/common/nav.html'); %>
+    </header>
+
+    <main>
+      <section id="preview">
+        <h2>Ajouter un nouvel élément</h2>
+        <p>Saisissez le texte du nouvel élément</p>
+        <form method="POST" action="/add-todo">
+          <input
+            type="text"
+            name="text"
+            placeholder="Lorem ipsum..."
+            aria-label="Texte"
+            required=""
+          />
+          <button type="submit">Ajouter</button>
+        </form>
+      </section>
+
+      <% todos.forEach(function(todo){ %>
+      <article>
+        <!-- TODO pas classless du coup -->
+        <p style="white-space: pre-line"><%= todo%></p>
+      </article>
+      <% }); %>
+    </main>
+
+    <%- await include('app/common/footer.html'); %>
+  </body>
+</html>

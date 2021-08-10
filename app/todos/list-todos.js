@@ -1,9 +1,13 @@
-const Response = require("../../utac-core/Response");
-const Headers = require("../../utac-core/Headers");
+const { Response, Headers } = require("../../utac-core/WebApi");
 const renderWithEjs = require("../../utac-core/renderWithEjs");
+const readRecords = require("../storage/readRecords");
 
 module.exports = async ({}) => {
-  const content = await renderWithEjs("app/list-todos/list-todos.html");
+  const todos = readRecords();
+
+  const content = await renderWithEjs("app/todos/list-todos.html", {
+    todos,
+  });
   const headers = new Headers({ "Content-Type": "text/html" });
   const init = { status: 200, headers };
   return new Response(content, init);
