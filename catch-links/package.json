@@ -1,0 +1,58 @@
+{
+  "_from": "catch-links",
+  "_id": "catch-links@2.0.1",
+  "_inBundle": false,
+  "_integrity": "sha1-7Xp4q+s/Sz063qO1u/nvnCT+So0=",
+  "_location": "/catch-links",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "catch-links",
+    "name": "catch-links",
+    "escapedName": "catch-links",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/catch-links/-/catch-links-2.0.1.tgz",
+  "_shasum": "ed7a78abeb3f4b3d3adea3b5bbf9ef9c24fe4a8d",
+  "_spec": "catch-links",
+  "_where": "/home/Antoine.Cailly/_Projets/perso/utac",
+  "author": {
+    "name": "substack"
+  },
+  "bugs": {
+    "url": "https://github.com/substack/catch-links/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "intercept local link clicks on a page",
+  "devDependencies": {
+    "tape": "^3.5.0"
+  },
+  "homepage": "https://github.com/substack/catch-links",
+  "keywords": [
+    "link",
+    "browser",
+    "click",
+    "intercept",
+    "spa",
+    "single-page app"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "catch-links",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/substack/catch-links.git"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "version": "2.0.1"
+}

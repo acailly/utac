@@ -4,7 +4,8 @@
   "description": "A minimalist take on web app development",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "esbuild ./utac-browser/enable.js --bundle --outfile=./app/public/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,10 @@
     "ejs": "^3.1.6",
     "encodeurl": "^1.0.2",
     "express": "^4.17.1",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.12.19"
   }
 }

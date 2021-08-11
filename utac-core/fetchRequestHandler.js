@@ -1,4 +1,6 @@
+const { Response } = require("./WebApi");
 const fetchRequestParams = require("./fetchRequestParams");
+// TODO Passer les routes en paramètres
 const routes = require("../app/routes");
 
 module.exports = async function (fetchRequest) {
