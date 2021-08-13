@@ -11,6 +11,8 @@ module.exports = async ({ request, params }) => {
 
   writeRecords(newTodos);
 
+  // TODO QUESTION doit on proposer des utilitaires pour faciliter l'écriture de
+  // requêtes ou réponses courantes, ici un redirect("back") ?
   const url =
     request.headers.get("Referrer") || request.headers.get("Referer") || "/";
   const headers = new Headers({ Location: encodeurl(url) });
