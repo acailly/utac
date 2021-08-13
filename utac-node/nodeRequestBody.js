@@ -1,5 +1,7 @@
 module.exports = async function (nodeRequest) {
-  const hasBody = nodeRequest.method !== "GET" && nodeRequest.method !== "HEAD";
+  const hasBody =
+    nodeRequest.method.toUpperCase() !== "GET" &&
+    nodeRequest.method.toUpperCase() !== "HEAD";
 
   if (hasBody) {
     // Inspired from https://nodejs.dev/learn/get-http-request-body-data-using-nodejs

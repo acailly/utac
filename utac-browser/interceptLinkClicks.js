@@ -1,6 +1,7 @@
 const catchLinks = require("../catch-links");
 const { Request } = require("../utac-core/WebApi");
 const browserRequestHandler = require("./browserRequestHandler");
+const showWaitingStatus = require("./showWaitingStatus");
 const navigate = require("./navigate");
 
 let enableCatchLinks = null;
@@ -11,9 +12,7 @@ module.exports = function (enable) {
     enableCatchLinks = catchLinks(window, async (href) => {
       console.log("Intercepted link click on", href);
 
-      // TODO laisser la possibilité de customiser ce comportement
-      console.log("Set the wait cursor");
-      document.body.style.cursor = "wait";
+      showWaitingStatus(true);
 
       const fetchRequest = new Request(href);
       const fetchResponse = await browserRequestHandler(fetchRequest);
@@ -23,9 +22,7 @@ module.exports = function (enable) {
         fetchResponse
       );
 
-      // TODO laisser la possibilité de customiser ce comportement
-      console.log("Remove the wait cursor");
-      document.body.style.cursor = "default";
+      showWaitingStatus(false);
 
       await navigate(fetchResponse, false);
     });

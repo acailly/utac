@@ -8,7 +8,7 @@ module.exports = async function (nodeRequest) {
   const init = {
     method: nodeRequest.method,
     headers: nodeRequest.headers,
-    // TODO Incomplet, voir https://developer.mozilla.org/fr/docs/Web/API/Request/Request#param%C3%A8tres
+    // Incomplete, see https://developer.mozilla.org/fr/docs/Web/API/Request/Request#param%C3%A8tres
   };
   if (fetchRequestBody) {
     init.body = fetchRequestBody;

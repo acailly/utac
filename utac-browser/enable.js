@@ -1,5 +1,6 @@
 const interceptLinkClicks = require("./interceptLinkClicks");
 const interceptPopstateEvents = require("./interceptPopstateEvents");
+const interceptFormSubmit = require("./interceptFormSubmit");
 
 let enabled = false;
 
@@ -10,6 +11,7 @@ function utacEnhance(enable) {
 
   interceptPopstateEvents(enabled);
   interceptLinkClicks(enabled);
+  interceptFormSubmit(enabled);
 }
 
 function isUtacEnhancementEnabled() {

@@ -14,7 +14,7 @@ async function render(templatePath, data) {
   return html;
 }
 
-// TODO Faire marcher dans le browser
+// TODO PWA Faire marcher dans le browser
 function readTemplate(templatePath) {
   return fs.readFileSync(templatePath, "utf8");
 }

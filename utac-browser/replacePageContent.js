@@ -7,9 +7,13 @@ module.exports = async function (fetchResponse) {
 
   document.documentElement.innerHTML = content;
 
-  // TODO Ajouter l'option morphdom
+  // TODO EXTENSION Ajouter l'option morphdom
+  // https://github.com/patrick-steele-idem/morphdom
   // const morphdom = require("morphdom");
   //morphdom(document.documentElement, content);
+
+  // TODO EXTENSION Ajouter l'option nanomorph
+  // https://github.com/choojs/nanomorph
 
   // The property innerHTML does not execute <script> tags,
   // we have to do it manually
