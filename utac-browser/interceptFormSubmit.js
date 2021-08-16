@@ -1,5 +1,5 @@
 const { Request, Headers } = require("../utac-core/WebApi");
-const browserRequestHandler = require("./browserRequestHandler");
+const { browserRequestHandler } = require("./browserRequestHandler");
 const showWaitingStatus = require("./showWaitingStatus");
 const navigate = require("./navigate");
 
@@ -49,7 +49,7 @@ async function onFormSubmit(event) {
 module.exports = function (enable) {
   if (enable) {
     window.addEventListener("submit", onFormSubmit, true);
-  } else if (!enable) {
+  } else {
     window.removeEventListener("submit", onFormSubmit, true);
   }
 };

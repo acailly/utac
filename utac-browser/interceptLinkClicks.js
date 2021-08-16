@@ -1,6 +1,6 @@
 const catchLinks = require("../catch-links");
 const { Request } = require("../utac-core/WebApi");
-const browserRequestHandler = require("./browserRequestHandler");
+const { browserRequestHandler } = require("./browserRequestHandler");
 const showWaitingStatus = require("./showWaitingStatus");
 const navigate = require("./navigate");
 

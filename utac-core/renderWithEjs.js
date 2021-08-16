@@ -1,22 +1,29 @@
-const fs = require("fs");
+const fs = require("fs").promises;
 const ejs = require("ejs");
-
-// Doit être à la racine du projet
-const root = __dirname;
+const isBrowser = require("./isBrowser");
 
 async function render(templatePath, data) {
   const globalData = {
     // TODO baseUrl ?
   };
 
-  const template = readTemplate(templatePath);
+  const template = await readTemplate(templatePath);
   const html = await compileTemplate(template, data, globalData, "");
   return html;
 }
 
 // TODO PWA Faire marcher dans le browser
-function readTemplate(templatePath) {
-  return fs.readFileSync(templatePath, "utf8");
+async function readTemplate(templatePath) {
+  let template;
+
+  if (isBrowser()) {
+    const response = await fetch(templatePath);
+    template = await response.text();
+  } else {
+    template = await fs.readFile(templatePath, "utf8");
+  }
+
+  return template;
 }
 
 async function compileTemplate(
@@ -29,13 +36,12 @@ async function compileTemplate(
   const compiledTemplate = ejs.compile(template, {
     client: true,
     async: true,
-    root,
   });
   const html = await compiledTemplate(
     templateData,
     null,
     async (includedTemplatePath, includedTemplateData) => {
-      const includedTemplate = readTemplate(
+      const includedTemplate = await readTemplate(
         `${relativeIncludePath}${includedTemplatePath}`
       );
       let childRelativeIncludePath = relativeIncludePath || "";

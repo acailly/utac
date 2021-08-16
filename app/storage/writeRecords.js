@@ -1,6 +1,6 @@
-const path = require("path");
 const writeRecordsToFile = require("../../utac-core/writeRecordsToFile");
+const storageFilePath = require("./storageFilePath");
 
 module.exports = function (records) {
-  writeRecordsToFile(path.join(__dirname, "..", "..", "data.txt"), records);
+  writeRecordsToFile(storageFilePath, records);
 };

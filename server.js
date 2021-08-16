@@ -1,7 +1,6 @@
 const path = require("path");
 const express = require("express");
 const nodeRequestHandler = require("./utac-node/nodeRequestHandler");
-const { nextTick } = require("process");
 
 const port = 5678;
 

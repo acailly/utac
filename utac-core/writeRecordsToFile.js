@@ -1,7 +1,7 @@
-const fs = require("fs");
+const fs = require("fs").promises;
 
-module.exports = function (filePath, records) {
+module.exports = async function (filePath, records) {
   const data = records.join("\n\n");
 
-  fs.writeFileSync(filePath, data, "utf8");
+  await fs.writeFile(filePath, data, "utf8");
 };

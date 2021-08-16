@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "build": "esbuild ./utac-browser/enable.js --bundle --outfile=./app/public/bundle.js"
+    "build": "node utac-browser/build.js"
   },
   "repository": {
     "type": "git",
@@ -19,13 +19,22 @@
   },
   "homepage": "https://github.com/acailly/utac#readme",
   "dependencies": {
+    "@isomorphic-git/lightning-fs": "^4.4.1",
     "ejs": "^3.1.6",
     "encodeurl": "^1.0.2",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
+    "path-browserify": "^1.0.1",
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "esbuild": "^0.12.19"
+    "esbuild": "^0.12.19",
+    "glob": "^7.1.7",
+    "make-dir": "^3.1.0",
+    "rimraf": "^3.0.2"
+  },
+  "browser": {
+    "fs": "./app/storage/fs-shim.js",
+    "path": "path-browserify"
   }
 }

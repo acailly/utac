@@ -3,7 +3,7 @@ const renderWithEjs = require("../../utac-core/renderWithEjs");
 const readRecords = require("../storage/readRecords");
 
 module.exports = async ({}) => {
-  const todos = readRecords();
+  const todos = await readRecords();
 
   const content = await renderWithEjs("app/todos/list-todos.html", {
     todos,

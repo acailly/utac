@@ -19,6 +19,7 @@
   <p>Heure du serveur : <span id="time">(chargement...)</span></p>
   <script>
     function refreshTime() {
+      // TODO Comment rendre cette requête fetch compatible offline ?
       fetch("/time")
         .then((response) => response.text())
         .then((html) => {

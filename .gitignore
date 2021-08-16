@@ -1,4 +1,4 @@
 node_modules/
 dist/
-
-app/public/bundle.js
+app/public/serviceworker.js
+app/public/utac/

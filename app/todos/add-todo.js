@@ -6,7 +6,7 @@ const writeRecords = require("../storage/writeRecords");
 module.exports = async ({ request, params }) => {
   const newTodo = params.get("text");
 
-  const todos = readRecords();
+  const todos = await readRecords();
   const newTodos = [...todos, newTodo];
 
   writeRecords(newTodos);
