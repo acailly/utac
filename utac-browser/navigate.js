@@ -12,5 +12,7 @@ module.exports = async function (fetchResponse, replace) {
     window.history[replace ? "replaceState" : "pushState"]({ url }, null, url);
   }
 
+  // TODO L'URL n'a pas l'air de changer...
+
   await replacePageContent(fetchResponse);
 };

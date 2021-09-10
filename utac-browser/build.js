@@ -4,7 +4,7 @@ const glob = require("glob");
 const makeDir = require("make-dir");
 const rimraf = require("rimraf");
 
-// TODO Passer en paramètres
+// TODO PARAMS Passer en paramètres
 const appRootPath = path.join(__dirname, "..");
 
 const appPublicPath = path.join(appRootPath, "app", "public");
@@ -26,7 +26,11 @@ try {
     entryPoints: [entryPoint],
     bundle: true,
     // TODO QUESTION minifier ou pas ?
-    minify: true,
+    // TODO BUG quand on minifie, ca plante ligne https://github.com/mde/ejs/blob/main/lib/utils.js#L98
+    // avec l'erreur qs is not defined (qs est un nom généré donc peut varier)
+    // a priori ce serait du au fait que MATCH_HTML et encode_char n'est pas embarqué par esbuild ?
+    // Cette issue a l'air liée, et pourrait aider a faire un mini cas reproductible : https://github.com/mde/ejs/issues/229
+    minify: false,
     sourcemap: true,
     outfile: path.join(outputPath, bundleFile),
   });
@@ -47,7 +51,7 @@ fs.copyFileSync(
 // Move templates in public folder
 console.log("Move templates in public folder");
 
-// TODO Permettre de customiser ca
+// TODO PARAMS Permettre de customiser ca
 const templateFiles = glob.sync("!(public|node_modules)/**/*.html", {
   cwd: appRootPath,
 });

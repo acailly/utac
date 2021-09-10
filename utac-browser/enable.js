@@ -15,6 +15,7 @@ function utacEnhance(enable) {
 
   console.log("UTAC enhancement is", enabled ? "enabled" : "disabled");
 
+  // useBrowserRequestHandlerMode(BROWSER_REQUEST_HANDLER_MODE_FETCH);
   useBrowserRequestHandlerMode(BROWSER_REQUEST_HANDLER_MODE_BROWSER);
 
   interceptPopstateEvents(enabled);

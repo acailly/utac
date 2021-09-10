@@ -1,4 +1,4 @@
-const { Request, Headers } = require("../utac-core/WebApi");
+const { Request } = require("../utac-core/WebApi");
 const { browserRequestHandler } = require("./browserRequestHandler");
 const showWaitingStatus = require("./showWaitingStatus");
 const navigate = require("./navigate");
@@ -40,6 +40,12 @@ async function onFormSubmit(event) {
     "Intercepted form submit gives following response:",
     fetchResponse
   );
+
+  // DEBUG: show response headers
+  // console.log("DEBUG: show response headers");
+  // for (const pair of fetchResponse.headers.entries()) {
+  //   console.log(pair[0] + ": " + pair[1]);
+  // }
 
   showWaitingStatus(false);
 

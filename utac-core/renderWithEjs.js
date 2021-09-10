@@ -12,7 +12,6 @@ async function render(templatePath, data) {
   return html;
 }
 
-// TODO PWA Faire marcher dans le browser
 async function readTemplate(templatePath) {
   let template;
 
