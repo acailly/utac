@@ -11,6 +11,11 @@ module.exports = async function (fetchRequest) {
   const requestPath = new URL(fetchRequest.url).pathname;
 
   console.log(`${fetchRequest.method} ${fetchRequest.url}`);
+  // DEBUG : Show headers in console
+  // console.log("Headers:");
+  // for (var header of fetchRequest.headers.entries()) {
+  //   console.log("* " + header[0] + ": " + header[1]);
+  // }
 
   const routeHandler = routes[requestPath];
   if (routeHandler) {

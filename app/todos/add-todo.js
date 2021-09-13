@@ -13,8 +13,15 @@ module.exports = async ({ request, params }) => {
 
   // TODO QUESTION doit on proposer des utilitaires pour faciliter l'écriture de
   // requêtes ou réponses courantes, ici un redirect("back") ?
+
+  // We need to check both .referrer property and referrer headers because:
+  // - it seems impossible to manually set the referrer headers in browser Fetch API, but we can set .referrer property
+  // - node-fetch doesn't support .referrer property, but it can set referrer headers
   const url =
-    request.headers.get("Referrer") || request.headers.get("Referer") || "/";
+    request.referrer ||
+    request.headers.get("Referrer") ||
+    request.headers.get("Referer") ||
+    "/";
   const headers = new Headers({ Location: encodeurl(url) });
   const init = { status: 302, headers };
   return new Response(null, init);

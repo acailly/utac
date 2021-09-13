@@ -26,7 +26,7 @@ try {
     entryPoints: [entryPoint],
     bundle: true,
     // TODO QUESTION minifier ou pas ?
-    // TODO BUG quand on minifie, ca plante ligne https://github.com/mde/ejs/blob/main/lib/utils.js#L98
+    // TODO! BUG quand on minifie, ca plante ligne https://github.com/mde/ejs/blob/main/lib/utils.js#L98
     // avec l'erreur qs is not defined (qs est un nom généré donc peut varier)
     // a priori ce serait du au fait que MATCH_HTML et encode_char n'est pas embarqué par esbuild ?
     // Cette issue a l'air liée, et pourrait aider a faire un mini cas reproductible : https://github.com/mde/ejs/issues/229

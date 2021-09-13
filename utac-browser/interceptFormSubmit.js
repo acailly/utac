@@ -17,6 +17,7 @@ async function onFormSubmit(event) {
   const method = form.method;
   const init = {
     method,
+    referrer: window.location.href,
   };
 
   const hasBody =
