@@ -5,6 +5,7 @@ const interceptLocalPostFetch = require("./interceptLocalPostFetch");
 const registerServiceWorker = require("./registerServiceWorker");
 const {
   useBrowserRequestHandlerMode,
+  getBrowserRequestHandlerMode,
   BROWSER_REQUEST_HANDLER_MODE_FETCH,
   BROWSER_REQUEST_HANDLER_MODE_BROWSER,
 } = require("./browserRequestHandler");
@@ -16,21 +17,45 @@ function utacEnhance(enable) {
 
   console.log("UTAC enhancement is", enabled ? "enabled" : "disabled");
 
-  // useBrowserRequestHandlerMode(BROWSER_REQUEST_HANDLER_MODE_FETCH);
-  useBrowserRequestHandlerMode(BROWSER_REQUEST_HANDLER_MODE_BROWSER);
-
   interceptPopstateEvents(enabled);
   interceptLinkClicks(enabled);
   interceptFormSubmit(enabled);
-  interceptLocalPostFetch(enabled);
-  registerServiceWorker(enabled);
 }
 
-function isUtacEnhancementEnabled() {
+function utacIsEnhancementEnabled() {
   return enabled;
 }
 
-window.utacEnhance = utacEnhance;
-window.isUtacEnhancementEnabled = isUtacEnhancementEnabled;
+function utacIsFullBrowserModeEnabled() {
+  return (
+    getBrowserRequestHandlerMode() === BROWSER_REQUEST_HANDLER_MODE_BROWSER
+  );
+}
 
-module.exports = { isUtacEnhancementEnabled, utacEnhance };
+function utacUseFullBrowserMode(browserMode) {
+  console.log(
+    "UTAC full browser mode is",
+    browserMode ? "enabled" : "disabled"
+  );
+
+  if (browserMode) {
+    useBrowserRequestHandlerMode(BROWSER_REQUEST_HANDLER_MODE_BROWSER);
+  } else {
+    useBrowserRequestHandlerMode(BROWSER_REQUEST_HANDLER_MODE_FETCH);
+  }
+
+  interceptLocalPostFetch(browserMode);
+  registerServiceWorker(browserMode);
+}
+
+window.utacEnhance = utacEnhance;
+window.utacIsEnhancementEnabled = utacIsEnhancementEnabled;
+window.utacIsFullBrowserModeEnabled = utacIsFullBrowserModeEnabled;
+window.utacUseFullBrowserMode = utacUseFullBrowserMode;
+
+module.exports = {
+  utacIsEnhancementEnabled,
+  utacEnhance,
+  utacIsFullBrowserModeEnabled,
+  utacUseFullBrowserMode,
+};

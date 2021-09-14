@@ -16,6 +16,10 @@ function useBrowserRequestHandlerMode(newBrowserRequestHandlerMode) {
   browserRequestHandlerMode = newBrowserRequestHandlerMode;
 }
 
+function getBrowserRequestHandlerMode() {
+  return browserRequestHandlerMode;
+}
+
 async function browserRequestHandler(fetchRequest) {
   let fetchResponse;
   if (browserRequestHandlerMode === BROWSER_REQUEST_HANDLER_MODE_FETCH) {
@@ -50,6 +54,7 @@ async function browserRequestHandler(fetchRequest) {
 module.exports = {
   browserRequestHandler,
   useBrowserRequestHandlerMode,
+  getBrowserRequestHandlerMode,
   BROWSER_REQUEST_HANDLER_MODE_FETCH,
   BROWSER_REQUEST_HANDLER_MODE_BROWSER,
 };

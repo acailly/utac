@@ -8,7 +8,6 @@ let enableCatchLinks = null;
 
 module.exports = function (enable) {
   if (!enableCatchLinks && enable) {
-    console.log("Initialize link interception");
     enableCatchLinks = catchLinks(window, async (href) => {
       console.log("Intercepted link click on", href);
 
@@ -28,7 +27,7 @@ module.exports = function (enable) {
     });
 
     enableCatchLinks(true);
-  } else {
+  } else if (enableCatchLinks && disable) {
     enableCatchLinks(enable);
   }
 };

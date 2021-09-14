@@ -4,21 +4,66 @@
     <input type="checkbox" role="switch" id="enhance" name="enhance" />
     Activer l'amélioration UX en JavaScript
   </label>
+  <!-- CAUTION: scripts must be idempotent!  -->
   <script>
     function initEnhanceCheckbox() {
+      console.log("[script] initEnhanceCheckbox");
       const enhanceCheckbox = document.getElementById("enhance");
-      enhanceCheckbox.checked = isUtacEnhancementEnabled();
+      enhanceCheckbox.checked = utacIsEnhancementEnabled();
       enhanceCheckbox.addEventListener("change", function () {
         utacEnhance(this.checked);
       });
     }
-    initEnhanceCheckbox();
+    // TODO QUESTION comment factoriser ce bout de code qui
+    // apparaît 3 fois dans ce fichier ?
+    if (document.readyState !== "complete") {
+      window.addEventListener("load", function (event) {
+        initEnhanceCheckbox();
+      });
+    } else {
+      initEnhanceCheckbox();
+    }
+  </script>
+
+  <!-- Switch to enable utac-browser browser full mode -->
+  <label for="enhance">
+    <input
+      type="checkbox"
+      role="switch"
+      id="browserFullMode"
+      name="browserFullMode"
+    />
+    Activer le mode offline
+  </label>
+  <!-- CAUTION: scripts must be idempotent!  -->
+  <script>
+    function initBrowserFullModeCheckbox() {
+      console.log("[script] initBrowserFullModeCheckbox");
+      const browserFullModeCheckbox =
+        document.getElementById("browserFullMode");
+      browserFullModeCheckbox.checked = utacIsFullBrowserModeEnabled();
+      browserFullModeCheckbox.addEventListener("change", function () {
+        utacUseFullBrowserMode(this.checked);
+      });
+    }
+    // TODO QUESTION comment factoriser ce bout de code qui
+    // apparaît 3 fois dans ce fichier ?
+    if (document.readyState !== "complete") {
+      window.addEventListener("load", function (event) {
+        initBrowserFullModeCheckbox();
+      });
+    } else {
+      initBrowserFullModeCheckbox();
+    }
   </script>
 
   <!-- Example of partiel refresh -->
   <p>Heure du serveur : <span id="time">(chargement...)</span></p>
+  <!-- CAUTION: scripts must be idempotent!  -->
   <script>
     function refreshTime() {
+      console.log("[script] refreshTime");
+
       fetch("/time", {
         method: "POST",
       })
@@ -34,7 +79,15 @@
           setTimeout(refreshTime, 1000);
         });
     }
-    refreshTime();
+    // TODO QUESTION comment factoriser ce bout de code qui
+    // apparaît 3 fois dans ce fichier ?
+    if (document.readyState !== "complete") {
+      window.addEventListener("load", function (event) {
+        refreshTime();
+      });
+    } else {
+      refreshTime();
+    }
   </script>
 
   <p>

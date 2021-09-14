@@ -7,7 +7,7 @@ module.exports = async function (fetchResponse) {
 
   document.documentElement.innerHTML = content;
 
-  // TODO EXTENSION Ajouter l'option morphdom
+  // TODO! EXTENSION Ajouter l'option morphdom
   // https://github.com/patrick-steele-idem/morphdom
   // const morphdom = require("morphdom");
   //morphdom(document.documentElement, content);
