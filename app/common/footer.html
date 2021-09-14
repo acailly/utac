@@ -19,8 +19,9 @@
   <p>Heure du serveur : <span id="time">(chargement...)</span></p>
   <script>
     function refreshTime() {
-      // TODO! rendre cette requête fetch compatible offline ?
-      fetch("/time")
+      fetch("/time", {
+        method: "POST",
+      })
         .then((response) => response.text())
         .then((html) => {
           // TODO QUESTION mettre en commun la logique de remplacement avec utac-browser/replacePageContent.js ?

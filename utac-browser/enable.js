@@ -1,6 +1,7 @@
 const interceptLinkClicks = require("./interceptLinkClicks");
 const interceptPopstateEvents = require("./interceptPopstateEvents");
 const interceptFormSubmit = require("./interceptFormSubmit");
+const interceptLocalPostFetch = require("./interceptLocalPostFetch");
 const registerServiceWorker = require("./registerServiceWorker");
 const {
   useBrowserRequestHandlerMode,
@@ -21,6 +22,7 @@ function utacEnhance(enable) {
   interceptPopstateEvents(enabled);
   interceptLinkClicks(enabled);
   interceptFormSubmit(enabled);
+  interceptLocalPostFetch(enabled);
   registerServiceWorker(enabled);
 }
 
