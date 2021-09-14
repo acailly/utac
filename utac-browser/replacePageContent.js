@@ -5,13 +5,16 @@ module.exports = async function (fetchResponse) {
 
   const content = await fetchResponse.text();
 
-  document.documentElement.innerHTML = content;
+  // TODO QUESTION comment choisir parmi les options ?
 
-  // TODO! EXTENSION Ajouter l'option morphdom
-  // https://github.com/patrick-steele-idem/morphdom
-  // const morphdom = require("morphdom");
-  //morphdom(document.documentElement, content);
+  // OPTION 1 : no dependency
+  // document.documentElement.innerHTML = content;
 
+  // OPTION 2 : morphdom
+  const morphdom = require("morphdom");
+  morphdom(document.documentElement, content);
+
+  // OPTION 3 : nanomorph
   // TODO EXTENSION Ajouter l'option nanomorph
   // https://github.com/choojs/nanomorph
 

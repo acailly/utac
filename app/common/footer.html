@@ -61,6 +61,8 @@
   <p>Heure du serveur : <span id="time">(chargement...)</span></p>
   <!-- CAUTION: scripts must be idempotent!  -->
   <script>
+    // TODO! BUG la boucle de rafraichissement a tendance à
+    // se lancer plusieurs fois
     function refreshTime() {
       console.log("[script] refreshTime");
 
