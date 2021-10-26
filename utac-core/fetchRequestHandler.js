@@ -4,13 +4,22 @@ const fetchRequestParams = require("./fetchRequestParams");
 const routes = require("../app/routes");
 
 module.exports = async function (fetchRequest) {
-  console.log("New request!");
-
   const params = await fetchRequestParams(fetchRequest);
 
   const requestPath = new URL(fetchRequest.url).pathname;
 
-  console.log(`${fetchRequest.method} ${fetchRequest.url}`);
+  const isRequestInitiatedByUser =
+    fetchRequest.headers.get("Sec-Fetch-User") === "?1";
+  if (isRequestInitiatedByUser) {
+    if (fetchRequest.method.toUpperCase() === "GET") {
+      console.log(`👀 ${fetchRequest.url}`);
+    } else {
+      console.log(`🔨 ${fetchRequest.url}`);
+    }
+  }
+
+  // DEBUG show all requests
+  // console.log(`${fetchRequest.method} ${fetchRequest.url}`);
   // DEBUG : Show headers in console
   // console.log("Headers:");
   // for (var header of fetchRequest.headers.entries()) {
