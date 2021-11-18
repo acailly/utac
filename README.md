@@ -2,6 +2,10 @@
 
 A minimalist take on web app development
 
+## En 2 mots
+
+L'objectif idéal est de faire un outil qui puisse être présenté en une conf à l'issue de laquelle un non développeur puisse se dire "j'ai juste à apprendre les rudiments de HTML, faire 2-3 copier coller et je vais arriver à faire mon site"
+
 ## Envies
 
 ### Vues et actions
@@ -9,6 +13,9 @@ A minimalist take on web app development
 - Centré autour des VUES (app => user) et des actions (user => app)
 - Vues = GET, Actions = POST
 - Pas de paramètres dans les URLs de type `/toto/1234/titi` mais l'utilisation des queryparams en GET et des form-data en POST
+- Les noms de route sont compréhensibles par les humains, par exemple :
+    - la vue "/telechargement-des-news-en-cours" au lieu de "/news/downloading"
+    - l'action "/telecharger-les news" au lieu de "/news/download"
 
 ### Agnostique
 
